@@ -106,7 +106,7 @@ public class TSFileConfig implements Serializable {
    * Encoder of time column, TsFile supports TS_2DIFF, PLAIN and RLE(run-length encoding) Default
    * value is TS_2DIFF.
    */
-  private String timeEncoding = "TS_2DIFF";
+  private String timeEncoding = "ORDER_SENSITIVE_TIME";//"TS_2DIFF";//
 
   /** Encoder of boolean column. Default value is RLE. */
   private String booleanEncoding = "RLE";
@@ -115,7 +115,7 @@ public class TSFileConfig implements Serializable {
   private String int32Encoding = "TS_2DIFF";
 
   /** Encoder of int64 and timestamp column. Default value is TS_2DIFF. */
-  private String int64Encoding = "TS_2DIFF";
+  private String int64Encoding = "ORDER_SENSITIVE_VALUE";//"TS_2DIFF";//
 
   /** Encoder of float column. Default value is GORILLA. */
   private String floatEncoding = "GORILLA";
@@ -153,7 +153,7 @@ public class TSFileConfig implements Serializable {
   private double dftSatisfyRate = 0.1;
 
   /** Data compression method, TsFile supports UNCOMPRESSED, SNAPPY, ZSTD or LZ4. */
-  private CompressionType compressor = CompressionType.LZ4;
+  private CompressionType compressor = CompressionType.UNCOMPRESSED;
 
   /** encryptFlag, true means opening the encrypt function. */
   private boolean encryptFlag = false;

@@ -270,13 +270,13 @@ public class FileGenerator {
     List<IMeasurementSchema> schemaList = new ArrayList<>();
     schemaList.add(
         new MeasurementSchema(
-            "s1", TSDataType.INT32, TSEncoding.valueOf(config.getValueEncoder())));
+            "s1", TSDataType.INT64, TSEncoding.valueOf(config.getValueEncoder(TSDataType.INT64))));
     schemaList.add(
         new MeasurementSchema(
-            "s2", TSDataType.INT64, TSEncoding.valueOf(config.getValueEncoder())));
+            "s2", TSDataType.INT32, TSEncoding.valueOf(config.getValueEncoder())));
     schemaList.add(
         new MeasurementSchema(
-            "s3", TSDataType.INT64, TSEncoding.valueOf(config.getValueEncoder())));
+            "s3", TSDataType.INT32, TSEncoding.valueOf(config.getValueEncoder())));
     schemaList.add(new MeasurementSchema("s4", TSDataType.TEXT, TSEncoding.PLAIN));
     schemaList.add(new MeasurementSchema("s5", TSDataType.BOOLEAN, TSEncoding.PLAIN));
     schemaList.add(new MeasurementSchema("s6", TSDataType.FLOAT, TSEncoding.RLE));

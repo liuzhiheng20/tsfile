@@ -218,15 +218,16 @@ public class NonAlignedChunkGroupWriterImpl implements IChunkGroupWriter {
 
   private void checkIsHistoryData(String measurementId, long time) throws WriteProcessException {
     final Long lastTime = lastTimeMap.get(measurementId);
-    if (lastTime != null && time <= lastTime) {
-      throw new WriteProcessException(
-          "Not allowed to write out-of-order data in timeseries "
-              + deviceId
-              + TsFileConstant.PATH_SEPARATOR
-              + measurementId
-              + ", time should later than "
-              + lastTimeMap.get(measurementId));
-    }
+//    if (lastTime != null && time <= lastTime) {
+//      throw new WriteProcessException(
+//          "Not allowed to write out-of-order data in timeseries "
+//              + deviceId
+//              + TsFileConstant.PATH_SEPARATOR
+//              + measurementId
+//              + ", time should later than "
+//              + lastTimeMap.get(measurementId));
+//    }
+    // change!!!!
   }
 
   public Map<String, Long> getLastTimeMap() {

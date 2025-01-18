@@ -78,6 +78,10 @@ public abstract class TSEncodingBuilder {
         return new Sprintz();
       case RLBE:
         return new RLBE();
+      case ORDER_SENSITIVE_TIME:
+        return new OrderSensitiveTime();
+      case ORDER_SENSITIVE_VALUE:
+        return new OrderSensitiveValue();
       default:
         throw new UnsupportedOperationException(type.toString());
     }
@@ -422,6 +426,44 @@ public abstract class TSEncodingBuilder {
           return new LongChimpEncoder();
         default:
           throw new UnSupportedDataTypeException("CHIMP doesn't support data type: " + type);
+      }
+    }
+
+    @Override
+    public void initFromProps(Map<String, String> props) {
+      // allowed do nothing
+    }
+  }
+
+  /** for FLOAT, DOUBLE, INT, LONG. */
+  public static class OrderSensitiveTime extends TSEncodingBuilder {
+
+    @Override
+    public Encoder getEncoder(TSDataType type) {
+      switch (type) {
+        case TIMESTAMP:
+        case INT64:
+          return new OrderSensitiveTimeEncoder();
+        default:
+          throw new UnSupportedDataTypeException("order sensitive time doesn't support data type: " + type);
+      }
+    }
+
+    @Override
+    public void initFromProps(Map<String, String> props) {
+      // allowed do nothing
+    }
+  }
+
+  public static class OrderSensitiveValue extends TSEncodingBuilder {
+
+    @Override
+    public Encoder getEncoder(TSDataType type) {
+      switch (type) {
+        case INT64:
+          return new OrderSensitiveValueEncoder();
+        default:
+          throw new UnSupportedDataTypeException("order sensitive value doesn't support data type: " + type);
       }
     }
 

@@ -154,7 +154,7 @@ public class PageReader implements IPageReader {
     uncompressDataIfNecessary();
     BatchData pageData = BatchDataFactory.createBatchData(dataType, ascending, false);
     boolean allSatisfy = recordFilter == null || recordFilter.allSatisfy(this);
-    while (timeDecoder.hasNext(timeBuffer)) {
+    while (timeDecoder.hasNext(timeBuffer) && valueDecoder.hasNext(valueBuffer)) {
       long timestamp = timeDecoder.readLong(timeBuffer);
       switch (dataType) {
         case BOOLEAN:

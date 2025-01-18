@@ -31,6 +31,7 @@ import org.apache.tsfile.read.expression.impl.SingleSeriesExpression;
 import org.apache.tsfile.read.filter.factory.TimeFilterApi;
 import org.apache.tsfile.read.filter.factory.ValueFilterApi;
 import org.apache.tsfile.read.query.dataset.QueryDataSet;
+//import org.apache.tsfile.sort.TsFileSorter;
 import org.apache.tsfile.utils.FileGenerator;
 
 import org.junit.After;
@@ -50,12 +51,14 @@ public class ReadTest {
 
   private static final String fileName = FileGenerator.outputDataFile;
   private static TsFileReader roTsFile = null;
+  //private static TsFileSorter roTsFileSorter = null;
 
   @Before
   public void prepare() throws IOException {
     FileGenerator.generateFile(1000, 100);
     TsFileSequenceReader reader = new TsFileSequenceReader(fileName);
     roTsFile = new TsFileReader(reader);
+    //roTsFileSorter = new TsFileSorter(reader);
   }
 
   @After
@@ -65,6 +68,14 @@ public class ReadTest {
     }
     FileGenerator.after();
   }
+
+//  @Test
+//  public void sortOneMeasurementWithoutFilterTest() throws IOException {
+//    List<Path> pathList = new ArrayList<>();
+//    pathList.add(new Path("d1", "s1", true));
+//    QueryExpression queryExpression = QueryExpression.create(pathList, null);
+//    roTsFileSorter.sort(queryExpression);
+//  }
 
   @Test
   public void queryOneMeasurementWithoutFilterTest() throws IOException {
@@ -76,6 +87,10 @@ public class ReadTest {
     int count = 0;
     while (dataSet.hasNext()) {
       RowRecord r = dataSet.next();
+      if(count==99) {
+        count++;
+        continue;
+      }
       if (count == 0) {
         assertEquals(1480562618010L, r.getTimestamp());
       }

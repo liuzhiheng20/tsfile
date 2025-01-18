@@ -1,4 +1,4 @@
-package org.apache.tsfile.sort.sorter;
+package org.apache.tsfile.read.sort.sorter;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

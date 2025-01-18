@@ -1790,6 +1790,7 @@ public class TsFileSequenceReader implements AutoCloseable {
    * @param chunkCacheKey given key of chunk LRUCache
    * @return chunk
    */
+  ///!!!read code
   public Chunk readMemChunk(CachedChunkLoaderImpl.ChunkCacheKey chunkCacheKey) throws IOException {
     ChunkHeader header = readChunkHeader(chunkCacheKey.getOffsetOfChunkHeader(), null);
     ByteBuffer buffer =
